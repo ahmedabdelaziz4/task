@@ -1,0 +1,32 @@
+<h1>News</h1>
+
+<%= form_tag news_index_path,method: :get do %>
+  <p>
+    <%= text_field_tag :search,params[:search]%>
+    <%= submit_tag "search",:name => nil%>
+  </p>
+<% end %>
+<% if @news.present? %>
+  <ul>
+    <% @news.each do |n| %>
+      <li>
+        <%= n.content %>(<%= n.publisher%>) 
+        <% if current_user.try(:admin?)%>
+        <%=link_to "edit",edit_news_path(n)%>
+        <%= link_to "delete",news_path(n),method: :delete %>
+        <% end %>
+        </li>
+        
+        
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<% if current_user.try(:admin?)%>
+  <%= link_to 'Add News' ,new_news_path %>
+<%end%>
+
+</br>
+<%= link_to 'Home Page' ,root_path %>
+</br>
+<%= link_to 'Back' ,:back %>

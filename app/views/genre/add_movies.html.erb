@@ -1,0 +1,16 @@
+<h1>add movies to genre <%= @genre.name%></h1>
+
+<% if @movies.present? %>
+  <ul>
+    <% @movies.each do |m| %>
+      <li>
+        <%= link_to m.name,movie_path(m) %>
+        &mdash;
+        <%= link_to "Add",add_to_genre_genre_path(@genre, movie_id: m.id) %>
+        
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to "Back to genre",genre_index_path %>

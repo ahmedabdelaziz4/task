@@ -1,0 +1,10 @@
+<strong>Please enter the admin password</strong>
+<%= form_for current_user do |u|  %>
+  <%= u.label :password  %>
+  <br/>
+  <%= u.password_field :admin_password  %>
+  <br/>
+  <%= u.submit :login  %>
+  <br/>
+  <%= link_to 'Back' ,root_path %>
+<% end %>

@@ -1,0 +1,25 @@
+<%= form_for @movie do |f|  %>
+  <%= f.label :name  %>
+  <br/>
+  <%= f.text_field :name  %>
+  <br/>
+  <%= f.label :image  %>
+  <br/>
+  <%= f.text_field :image  %>
+  <br/>
+  <%= f.label :awards  %>
+  <br/>
+  <%= f.text_field :awards  %>
+  <br/>
+  <%= f.label :rating  %>
+  <br/>
+  <%= f.text_field :rating  %>
+  <br/>
+  <%= f.label :release_date  %>
+  <br/>
+  <%= f.date_field :release_date  %>
+  <br/>
+  <%= f.submit  %>
+  <br/>
+  <%= link_to 'Back' ,:back %>
+<% end %>

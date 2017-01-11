@@ -1,0 +1,19 @@
+<h1>Movies</h1>
+
+<% if @movie.present? %>
+  <ul>
+    <% @movie.each do |m| %>
+    <%unless m.release_date.past?%>
+      <li>
+        <%= link_to m.name,movie_path(m) %>
+        &mdash;
+        <%= m.release_date%>
+        
+      </li>
+    <% end %>
+    <% end %>
+  </ul>
+<% end %>
+<%= link_to 'Back to movies' ,movies_path %>
+</br>
+<%= link_to 'Back' ,:back %>

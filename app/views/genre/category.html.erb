@@ -1,0 +1,17 @@
+<h1>Movies</h1>
+<% if @movies.present? %>
+  <ul>
+    <% @movies.each do |m| %>
+      <li>
+        <%= m.name %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<%if current_user.try(:admin?)%>
+<%= link_to 'Add more movies ' ,add_movies_genre_path(@genre) %>
+<%end %>
+</br>
+<%= link_to "Back to genre",genre_index_path %>
+</br>
+<%= link_to 'Back' ,:back %>

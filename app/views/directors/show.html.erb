@@ -1,0 +1,47 @@
+<h1>
+  <h1>
+    <%= @director.name.capitalize %>
+  </h1>
+  <dl>
+   
+    <dt>
+      <strong>Year</strong>
+      <dd>
+        <%= @director.year %>
+      </dd>
+    </dt>
+
+    <dt>
+      <strong>Movies</strong>
+      
+      <% if @director.movies.present? %>
+      <ul>
+        <%@director.movies.each do |m|%>
+          <li>
+            <%= m.name %>
+          </li>
+        <%end%>
+        
+      </ul>
+      <%else%>
+      <br/>
+      There are no movies directed by <%= @director.name %> yet!
+      <%end%>
+      
+    </dt>
+    
+  </dl>
+  <% if current_user.try(:admin?) %>
+  <%= link_to 'Edit',edit_director_path%>
+  <br/>
+  <%= link_to 'Delete Director',director_path,method: :delete  %>
+  </br>
+  <%= link_to 'add movie',add_movies_director_path(@director)  %>
+  </br>
+  <%end %>
+  <%= link_to 'back to directors',directors_path%>
+  </br>
+
+  <%= link_to 'Back' ,:back %>
+
+  

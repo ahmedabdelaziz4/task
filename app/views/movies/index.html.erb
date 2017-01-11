@@ -1,0 +1,29 @@
+<h1>Movies</h1>
+
+<%= form_tag movies_path,method: :get do %>
+  <p>
+    <%= text_field_tag :search,params[:search]%>
+    <%= submit_tag "search",:name => nil%>
+  </p>
+<% end %>
+<% if @movie.present? %>
+  <ul>
+    <% @movie.each do |m| %>
+      <li>
+        <%= link_to m.name,movie_path(m) %>
+        &mdash;
+        <%= m.release_date.year %>
+        
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<% if current_user.try(:admin?)%>
+  <%= link_to 'Add Movie' ,new_movie_path %>
+<%end%>
+</br>
+<%= link_to 'View upcoming movies' ,opening_movies_movies_path %>
+</br>
+<%= link_to 'Home Page' ,users_path %>
+</br>
+<%= link_to 'Back' ,:back %>

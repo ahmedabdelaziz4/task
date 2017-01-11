@@ -1,0 +1,36 @@
+<h1>
+  <h1>
+    <%= @actor.name.capitalize %>
+  </h1>
+  <dl>
+   
+    <dt>
+      <strong>Year</strong>
+      <dd>
+        <%= @actor.year %>
+      </dd>
+    </dt>
+
+    <dt>
+      <strong>Movies</strong>
+      <% if @actor.movies.present? %>
+      <ul>
+        <% @actor.movies.each do |m| %>
+        <li>
+          <%= m.name.capitalize %>
+        </li>
+        <%end%>
+      </ul>
+      <% end %>
+    </dt>
+    
+  </dl>
+  <% if current_user.try(:admin?) %>
+  <%= link_to 'Edit',edit_actor_path%>
+  <br/>
+  <%= link_to 'Delete Actor',actor_path,method: :delete  %>
+  </br>
+  <%end %>
+  <%= link_to 'Back' ,:back %>
+
+  

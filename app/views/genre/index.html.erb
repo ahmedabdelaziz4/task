@@ -1,0 +1,22 @@
+<h1>Genres</h1>
+<% if @genres.present? %>
+  <ul>
+    <% @genres.each do |g| %>
+      <li>
+        <%= g.name %>
+        
+      <% if current_user.try(:admin?)%>
+        <%=link_to "edit",edit_genre_path(g)%>
+        <%= link_to "delete",genre_path(g),method: :delete %>
+      
+        
+      <% end %>
+      <%= link_to "movies",category_genre_path(g) %> 
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+</br>
+<%= link_to 'Home Page' ,root_path %>
+</br>
+<%= link_to 'Back' ,:back %>

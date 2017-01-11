@@ -1,0 +1,14 @@
+<%= form_for [@movie, @review] do |f|  %>
+  
+  <%= f.label :review  %>
+  <br/>
+  <%= f.text_field :name  %>
+  <br/>
+  <%= f.label :rating  %>
+  <br/>
+  <%= f.select :rating, (1..10) %>
+  </br>
+  <%= f.submit  %>
+  <br/>
+  <%= link_to 'Back' ,:back %>
+<% end %>

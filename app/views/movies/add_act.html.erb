@@ -1,0 +1,16 @@
+<h1>add actors to <%=@movie.name%></h1>
+
+<% if @actors.present? %>
+  <ul>
+    <% @actors.each do |m| %>
+      <li>
+        <%= link_to m.name,actor_path(m) %>
+        &mdash;
+        <%= link_to "Add to movie",add_to_movie_movie_path(@movie, actor_id: m.id) %>
+        
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to "Back to movies",movie_path %>

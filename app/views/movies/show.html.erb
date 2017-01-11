@@ -1,0 +1,117 @@
+<h1>
+  <h1>
+    <%= @movie.name.capitalize %>
+  </h1>
+  <dl>
+    <dt>
+      <strong>Directed by</strong>
+    </dt>
+    <%if @movie.director.present?%>
+    <dd>
+      <%= link_to @movie.director.name,director_path(@movie.director) %>
+    </dd>
+    <%else%>
+    <dd>
+    No director info available!
+    <dd/>
+    <%end%>
+
+    <dt>
+      <strong>Image</strong>
+    </dt>
+    <dd>
+      <%= image_tag @movie.image ,width:200 %>
+    </dd>
+
+    <dt>
+      <strong>Release date</strong>
+      <%if @movie.release_date.present?%>
+      <%unless @movie.release_date.past?%>
+      <dd>
+        <%= @movie.release_date %>
+      </dd>
+      <%else%>
+      <dd>
+      <%= @movie.release_date %>
+      </dd>
+      <%end%>
+      <%else%>
+      <dd>
+        No info about the release date of this movie yet
+      </dd>
+      <%end%>
+    </dt>
+
+    <dt>
+      <strong>Genre</strong>
+      <%if @movie.genres.present?%>
+      <dd>
+        <%= @genres.pluck(:name)%>
+      </dd>
+        
+      <%else%>
+      <dd>
+      No genres assigned yet! 
+      <dd/>
+
+      <%end%>
+      
+    </dt>
+
+    <dt>
+      <strong>Awards</strong>
+      <%if @movie.awards.present?%>
+      <dd>
+        <%= @movie.awards %>
+      </dd>
+      <%else%>
+      <dd>
+        No awards won!
+      </dd>
+      
+      <%end%>
+      
+    </dt>
+
+    
+
+    <dt>
+      <strong>Rating</strong>
+      <dd>
+        <%= @movie.rating %>
+      </dd>
+    </dt>
+    <dt>
+      <strong>Reviews</strong>
+      <%if @reviews.present? %>
+      <%@reviews.each do |r|%>
+      <ul>
+        <li>
+          <dd>
+            <%= r.user.name.capitalize %>:<%= r.name %> &mdash; Rating: <%= r.rating%>/10 
+          </dd>
+        </li>
+      </ul>
+
+      <%end%>
+      <%end%>
+      <%= link_to 'add a review',new_movie_review_path(@movie) %>
+    </dt>
+  </dl>
+  <%= link_to 'Show Movie actors',act_movie_path(@movie) %>
+  <br/>
+  <%= link_to 'Back to Movies', movies_path %>
+  </br>
+  <% if current_user.try(:admin?)%>
+  <%= link_to 'Edit Movie',edit_movie_path %>
+  </br>
+  <%= link_to 'Delete Movie',movie_path,method: :delete  %>
+  </br>
+  <%end%>
+  <%= link_to 'Back' ,:back %>
+  </br>
+  <%= link_to image_tag("https://facebookbrand.com/wp-content/themes/fb-branding/prj-fb-branding/assets/images/fb-art.png",width:50), "https://www.facebook.com/sharer.php?u=https://developers.facebook.com/apps/358205284549698" %>
+  <br/>
+  Share on facebook
+  
+</h1>

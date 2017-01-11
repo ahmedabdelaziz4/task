@@ -1,0 +1,19 @@
+<h1>Your Watch list</h1>
+
+<% if @movies.present? %>
+  <ul>
+    <% @movies.each do |m| %>
+      <li>
+        <%= link_to m.name,movie_path(m) %>
+        &mdash;
+        <%= m.release_date.year %>
+        
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<%= link_to 'Add movies' ,add_movies_user_path(current_user) %>
+</br>
+<%= link_to 'Home Page' ,users_path %>
+</br>
+<%= link_to 'Back' ,:back %>

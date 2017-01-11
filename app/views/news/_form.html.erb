@@ -1,0 +1,13 @@
+<%= form_for @news do |f|  %>
+  <%= f.label :publisher  %>
+  <br/>
+  <%= f.text_field :publisher  %>
+  <br/>
+  <%= f.label :content  %>
+  <br/>
+  <%= f.text_field :content  %>
+  <br/>
+  <%= f.submit  %>
+  <br/>
+  <%= link_to 'Back' ,:back %>
+<% end %>

@@ -1,0 +1,13 @@
+<%= form_for @director do |f|  %>
+  <%= f.label :name  %>
+  <br/>
+  <%= f.text_field :name  %>
+  <br/>
+  <%= f.label :year  %>
+  <br/>
+  <%= f.text_field :year  %>
+  <br/>
+  <%= f.submit  %>
+  <br/>
+  <%= link_to 'Back' ,:back %>
+<% end %>

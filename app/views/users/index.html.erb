@@ -1,0 +1,56 @@
+<h1>
+<% if user_signed_in? %>
+<strong><%= @user.name.titleize%> </strong>
+<% if current_user.try(:admin?) %>
+ &mdash;
+ Admin 
+<% end %>
+
+<% else %>
+Welcome please sign in!!
+<% end %>
+
+</h1>
+<% if user_signed_in? %>
+<%= link_to 'Edit profile',user_registration_path,method: :patch %>
+</br>
+<%= link_to 'View movies' ,movies_path %>
+</br>
+<%= link_to 'View actors' ,actors_path %>
+</br>
+<%= link_to 'View Directors' ,directors_path %>
+</br>
+<%= link_to 'Watch list' ,watch_list_user_path(@user) %>
+</br>
+<%= link_to 'Genres' ,genre_index_path %>
+</br>
+<%= link_to 'News' ,news_index_path %>
+</br>
+<%= link_to 'Signout',destroy_user_session_path, method: :delete %>
+
+<% end %>
+<% unless user_signed_in? %>
+<%= link_to 'Sign In', new_user_session_path%>
+<%= link_to 'login with fb', omniauth_authorize_path("user", :facebook)%>
+<% end %>
+
+
+
+<% if current_user.try(:admin?) %>
+<h5>Users:</h5>
+<% if @user_all.present? %>
+  <ul>
+    <% @user_all.each do |m| %>
+    <%unless m.name == current_user.name%>
+      <li>
+        <%= link_to m.name,user_path(m) %>
+        
+        
+      </li>
+
+    <% end %>
+    <%end%>
+  </ul>
+<% end %>
+<% end %>
+

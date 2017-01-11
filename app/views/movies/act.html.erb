@@ -1,0 +1,22 @@
+<h1><%=@movie.name%>'s Actors</h1>
+<% if @actors.present? %>
+  <ul>
+    <% @actors.each do |a| %>
+      <li>
+        <%= link_to a.name,actor_path(a) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  No actors assigned to this movie yet!.
+  <br/>
+<% end %>
+
+<%= link_to 'Back to Movies', movies_path %>
+<br/>
+<%= link_to 'Back',:back %>
+<br/>
+<% if current_user.try(:admin?)%>
+<%= link_to 'Add actors', add_act_movie_path(@movie) %>
+<%end%>
+ 
