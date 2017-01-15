@@ -30,9 +30,12 @@ class MoviesController < ApplicationController
 	def create
 		
 	@movie = Movie.new(movie_params)
-	@movie..name.capitalize!
-	@movie.save
-	redirect_to movies_path
+	@movie.name.capitalize!
+	if @movie.save
+		redirect_to movies_path
+	else 
+		render :new
+	end
 	
 	
 	
@@ -42,8 +45,7 @@ class MoviesController < ApplicationController
 	def update
 		@movie=Movie.find(params[:id])
 		@movie.update(movie_params)
-		@movie.errors.full_messages
-				
+			
 
 		redirect_to @movie
 		
@@ -72,6 +74,9 @@ class MoviesController < ApplicationController
 
 	def opening_movies
 		@movie  = Movie.all
+		@start_date = (Date.today)
+		@end_date = (Date.today + 7.days)
+
 	end
 
 
@@ -84,6 +89,6 @@ class MoviesController < ApplicationController
 	protected
 
 	def movie_params
-		params.require(:movie).permit(:name,:year,:image,:awards,:rating,:release_date)
+		params.require(:movie).permit(:name,:image,:awards,:rating,:release_date)
 	end
 end

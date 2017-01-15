@@ -1,4 +1,6 @@
+<%=@movie.errors.full_messages %>
 <%= form_for @movie do |f|  %>
+
   <%= f.label :name  %>
   <br/>
   <%= f.text_field :name  %>
